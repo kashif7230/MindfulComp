@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Wellness Chatbot</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --user-message-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --bot-message-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --dark-text: #2d3436;
+    --light-text: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --deep-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+     background: url('background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* desktop width */
+    height: 600px; /* desktop height */
+    margin: 40px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--deep-shadow);
+}
+
+.chat-header {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.chat-header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+.status-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    background: #00e676;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00e676;
+}
+
+.chat-messages {
+    height: calc(100% - 180px);
+    background: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.message {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.user .message-content {
+    background: var(--user-message-gradient);
+    color: var(--light-text);
+    border-bottom-right-radius: 4px;
+}
+
+.bot .message-content {
+    background: var(--bot-message-gradient);
+    color: var(--dark-text);
+    border-bottom-left-radius: 4px;
+}
+
+.message-typing {
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    background: var(--bot-message-gradient);
+    border-radius: 18px;
+    width: fit-content;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--dark-text);
+    border-radius: 50%;
+    margin: 0 3px;
+    opacity: 0.6;
+    animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingAnimation {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+.chat-input {
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.chat-input input:focus {
+    background: #e8e8e8;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+.chat-input button {
+    margin-left: 12px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--secondary-gradient);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.chat-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat-input button:active {
+    transform: translateY(0);
+}
+
+.welcome-message {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: var(--bot-message-gradient);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.welcome-message h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: var(--dark-text);
+}
+
+.welcome-message p {
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    opacity: 0.8;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.suggestion-chip {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+}
+
+.suggestion-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px 18px;
+    border-radius: 18px;
+    text-align: center;
+    margin: 10px 0;
+    box-shadow: var(--shadow);
+}
+
+/* Animation for new messages */
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message {
+    animation: messageAppear 0.3s ease-out;
+}
+
+/* Custom scrollbar */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+    .chat-container {
+        max-width: 700px;
+        height: 550px;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        height: 100vh;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .message-content {
+        max-width: 85%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="status-indicator"></div>
+        <h1>Mindful Companion</h1>
+        <p>Your mental wellness assistant</p>
+    </div>
+    
+    <div class="chat-messages">
+        <div class="welcome-message">
+            <h2>Hello there! 👋</h2>
+            <p>I'm here to support your mental wellness journey. How can I help you today?</p>
+            
+            <div class="suggestions">
+                <div class="suggestion-chip">I'm feeling anxious</div>
+                <div class="suggestion-chip">Stress management tips</div>
+                <div class="suggestion-chip">How to improve sleep?</div>
+                <div class="suggestion-chip">I need motivation</div>
+            </div>
+        </div>
+        
+        <div class="message bot">
+            <div class="message-content">
+                Hi! I'm your mental wellness assistant. How can I help you today?
+            </div>
+        </div>
+    </div>
+    
+    <div class="chat-input">
+        <input placeholder="Type your message here..." type="text">
+        <button><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "@google/generative-ai": "https://esm.run/@google/generative-ai"
+  }
+}
+</script>
+
+<script type="module">
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const API_KEY = "AIzaSyAAY2Rzyhx3Wq42IDselKl7exS6cdKbs3E";
+
+const systemPrompt = `
+You are a calm and supportive mental wellness assistant.
+Respond empathetically and provide helpful guidance to users.
+`;
+
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ 
+    model: "gemini-2.0-flash",
+    systemInstruction: systemPrompt
+});
+
+let messages = { history: [] };
+
+const chatMessages = document.querySelector('.chat-messages');
+const inputEl = document.querySelector('.chat-input input');
+const sendButton = document.querySelector('.chat-input button');
+const suggestionChips = document.querySelectorAll('.suggestion-chip');
+
+function showTypingIndicator() {
+    const typingElement = document.createElement('div');
+    typingElement.className = 'message-typing';
+    typingElement.innerHTML = `
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+    `;
+    chatMessages.appendChild(typingElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return typingElement;
+}
+
+function removeTypingIndicator(typingElement) {
+    if (typingElement && typingElement.parentNode) {
+        typingElement.parentNode.removeChild(typingElement);
+    }
+}
+
+async function sendMessage() {
+    const userMessage = inputEl.value.trim();
+    if (!userMessage) return;
+
+    inputEl.value = "";
+    
+    const userMessageElement = document.createElement('div');
+    userMessageElement.className = 'message user';
+    userMessageElement.innerHTML = `<div class="message-content">${userMessage}</div>`;
+    chatMessages.appendChild(userMessageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    const typingElement = showTypingIndicator();
+
+    try {
+        const chat = model.startChat(messages);
+        let result = await chat.sendMessageStream(userMessage);
+
+        const botMessageElement = document.createElement('div');
+        botMessageElement.className = 'message bot';
+        botMessageElement.innerHTML = '<div class="message-content"></div>';
+        chatMessages.appendChild(botMessageElement);
+        
+        removeTypingIndicator(typingElement);
+        
+        const messageContent = botMessageElement.querySelector('.message-content');
+        
+        for await (const chunk of result.stream) {
+            messageContent.innerHTML += chunk.text();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        messages.history.push({ role: "user", parts: [{ text: userMessage }] });
+        messages.history.push({ role: "model", parts: [{ text: messageContent.innerHTML }] });
+
+    } catch (error) {
+        removeTypingIndicator(typingElement);
+        
+        const errorElement = document.createElement('div');
+        errorElement.className = 'error-message';
+        errorElement.textContent = 'The message could not be sent. Please try again.';
+        chatMessages.appendChild(errorElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        console.error('Error sending message:', error);
+    }
+}
+
+sendButton.addEventListener('click', sendMessage);
+inputEl.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
+
+suggestionChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+        inputEl.value = chip.textContent;
+        sendMessage();
+    });
+});
+
+window.addEventListener('load', () => {
+    inputEl.focus();
+});
+</script>
+
+</body>
+</html>

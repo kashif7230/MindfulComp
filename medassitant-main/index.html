@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mindful Companion - AI Mental Wellness</title>
+    <meta name="description" content="Professional AI-powered mental health support. Get empathetic guidance, cognitive behavioral therapy tools, and 24/7 accessible mental wellness assistance.">
+    <meta property="og:title" content="Mindful Companion - AI Mental Health Support">
+    <meta property="og:description" content="Professional AI-powered mental health support. Get empathetic guidance, cognitive behavioral therapy tools, and 24/7 accessible mental wellness assistance.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="header-brand">
+                <div class="header-logo">
+                    <img src="logo.jpg" alt="Mindful Companion Logo" class="logo-image">
+                </div>
+                <span class="header-title">Mindful Companion</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="#understanding" data-testid="link-understanding">Understanding</a>
+                <a href="#functions" data-testid="link-functions">Core Functions</a>
+                <a href="#benefits" data-testid="link-benefits">Benefits</a>
+                <a href="#how-to-use" data-testid="link-how-to-use">How to Use</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" data-testid="button-theme-toggle" onclick="toggleTheme()">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="btn btn-primary desktop-only" data-testid="button-start-chat" onclick="window.location.href='pro.html'">Start Chat</button>
+                <button class="mobile-menu-toggle mobile-only" data-testid="button-mobile-menu" onclick="toggleMobileMenu()">
+                    <span class="hamburger">☰</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="nav-mobile" id="mobileNav">
+            <nav class="nav-mobile-content">
+                <a href="#understanding" data-testid="link-understanding-mobile" onclick="closeMobileMenu()">Understanding</a>
+                <a href="#functions" data-testid="link-functions-mobile" onclick="closeMobileMenu()">Core Functions</a>
+                <a href="#benefits" data-testid="link-benefits-mobile" onclick="closeMobileMenu()">Benefits</a>
+                <a href="#how-to-use" data-testid="link-how-to-use-mobile" onclick="closeMobileMenu()">How to Use</a>
+            <!--link start chat button with pro.html -->
+            
+                <button class="btn btn-primary full-width" data-testid="button-start-chat-mobile" onclick="window.location.href='pro.html'">Start Chat</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left Column - Content -->
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title" data-testid="text-hero-title">Psychiatrist - AI Mental Wellness</h1>
+                        <p class="hero-subtitle" data-testid="text-hero-subtitle">
+                            Hello, How can I assist you on your mental health journey today?
+                        </p>
+                        <p class="hero-description" data-testid="text-hero-description">
+                            Empowering Mental Health with AI
+                        </p>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" data-testid="button-start-conversation" onclick="window.location.href='pro.html'">
+                         Start Conversation
+                         </button>
+
+                        </button>
+                        <button class="btn btn-outline btn-large" data-testid="button-learn-more" onclick="learnMore()">
+                            Learn More
+                        </button>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="features-grid">
+                        <div class="feature-item" data-testid="feature-0">
+                            <div class="feature-icon">💬</div>
+                            <span>24/7 Available Support</span>
+                        </div>
+                        <div class="feature-item" data-testid="feature-1">
+                            <div class="feature-icon">👥</div>
+                            <span>Empathetic Conversations</span>
+                        </div>
+                        <div class="feature-item" data-testid="feature-2">
+                            <div class="feature-icon">⏰</div>
+                            <span>Immediate Response</span>
+                        </div>
+                        <div class="feature-item" data-testid="feature-3">
+                            <div class="feature-icon">🛡️</div>
+                            <span>Private & Confidential</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Avatar and Chat Starters -->
+                <div class="hero-sidebar">
+                    <div class="avatar-container">
+                        <img src="image.png " 
+                             alt="Dr. Mindful Companion - AI Psychiatrist" 
+                             class="avatar-image"
+                             data-testid="img-avatar">
+                        <div class="avatar-badge">💬</div>
+                    </div>
+
+                    <!-- Conversation Starters -->
+                    <div class="starters-section">
+                        <h3 class="starters-title" data-testid="text-starters-title">Try these conversation starters:</h3>
+                        <div class="starters-list">
+                            <div class="starter-card" data-testid="card-starter-0" onclick="selectStarter(0)">
+                                <p>Describe a typical session with Mindful Companion and how he creates a supportive environment.</p>
+                            </div>
+                            <div class="starter-card" data-testid="card-starter-1" onclick="selectStarter(1)">
+                                <p>Explore strategies Mindful Companion might use to help a patient with anxiety disorders.</p>
+                            </div>
+                            <div class="starter-card" data-testid="card-starter-2" onclick="selectStarter(2)">
+                                <p>Discuss the importance of empathy in Mindful Companion approach to psychotherapy.</p>
+                            </div>
+                            <div class="starter-card" data-testid="card-starter-3" onclick="selectStarter(3)">
+                                <p>Outline the techniques Mindful Companion employs to address PTSD in his patients.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Understanding Section -->
+    <section id="understanding" class="understanding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-testid="text-understanding-title">Understanding Psychiatrist</h2>
+                <div class="section-content">
+                    <p data-testid="text-understanding-description">
+                        Psychiatrist is a specialized version of Gmenin, designed to simulate the role of a psychiatrist in digital environments. 
+                        This AI tool adopts the persona of Mindful Companion, an empathetic, professional psychiatrist.
+                    </p>
+                    <p>
+                        It is built to facilitate conversations that mirror psychotherapy sessions, providing users with insights and support 
+                        in managing various mental health issues. For example, Psychiatrist can help users explore their feelings about a 
+                        stressful job, process emotions following a breakup, or develop strategies to manage symptoms of anxiety or depression.
+                    </p>
+                    <p>
+                        By engaging in these simulated therapy sessions, users can gain a better understanding of their emotional states 
+                        and learn coping mechanisms in a safe, controlled environment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div class="highlights-grid">
+                <div class="highlight-card" data-testid="card-highlight-0">
+                    <div class="highlight-icon">🧠</div>
+                    <h3 data-testid="text-highlight-title-0">AI-Powered Psychology</h3>
+                    <p data-testid="text-highlight-description-0">Advanced AI that understands mental health complexities</p>
+                </div>
+                <div class="highlight-card" data-testid="card-highlight-1">
+                    <div class="highlight-icon">❤️</div>
+                    <h3 data-testid="text-highlight-title-1">Empathetic Approach</h3>
+                    <p data-testid="text-highlight-description-1">Compassionate responses tailored to your emotional needs</p>
+                </div>
+                <div class="highlight-card" data-testid="card-highlight-2">
+                    <div class="highlight-icon">🛡️</div>
+                    <h3 data-testid="text-highlight-title-2">Safe Environment</h3>
+                    <p data-testid="text-highlight-description-2">Confidential space to explore your thoughts and feelings</p>
+                </div>
+                <div class="highlight-card" data-testid="card-highlight-3">
+                    <div class="highlight-icon">⚡</div>
+                    <h3 data-testid="text-highlight-title-3">Immediate Support</h3>
+                    <p data-testid="text-highlight-description-3">Available 24/7 whenever you need guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Functions Section -->
+    <section id="functions" class="functions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-testid="text-functions-title">Core Functions of Psychiatrist</h2>
+                <p class="section-subtitle" data-testid="text-functions-subtitle">
+                    Mindful Companion offers comprehensive mental health support through specialized therapeutic approaches and evidence-based techniques.
+                </p>
+            </div>
+
+            <div class="functions-grid">
+                <div class="function-card" data-testid="card-function-0" onclick="selectFunction(0)">
+                    <div class="function-header">
+                        <div class="function-icon-container">
+                            <div class="function-icon">❤️</div>
+                        </div>
+                        <span class="function-badge" data-testid="badge-function-0">Support</span>
+                    </div>
+                    <h3 class="function-title" data-testid="text-function-title-0">Emotional Support</h3>
+                    <p class="function-description" data-testid="text-function-description-0">
+                        Providing empathetic feedback and coping strategies for overwhelming feelings.
+                    </p>
+                    <div class="function-details">
+                        <div class="function-example">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Example</span>
+                            </div>
+                            <p data-testid="text-function-example-0">
+                                A user feeling overwhelmed by parental responsibilities discusses their stress and receives empathetic feedback along with coping strategies.
+                            </p>
+                        </div>
+                        <div class="function-scenario">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Scenario</span>
+                            </div>
+                            <p data-testid="text-function-scenario-0">
+                                In this scenario, Psychiatrist, listens to the user's concerns about balancing work and family life, validates their feelings, and suggests practical methods for stress management, such as mindfulness exercises and prioritizing tasks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card" data-testid="card-function-1" onclick="selectFunction(1)">
+                    <div class="function-header">
+                        <div class="function-icon-container">
+                            <div class="function-icon">🧠</div>
+                        </div>
+                        <span class="function-badge" data-testid="badge-function-1">CBT</span>
+                    </div>
+                    <h3 class="function-title" data-testid="text-function-title-1">Cognitive Behavioral Therapy Tools</h3>
+                    <p class="function-description" data-testid="text-function-description-1">
+                        Helping users identify and reframe negative thought patterns.
+                    </p>
+                    <div class="function-details">
+                        <div class="function-example">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Example</span>
+                            </div>
+                            <p data-testid="text-function-example-1">
+                                A user struggling with negative thoughts participates in a session where they learn to identify and reframe these thoughts.
+                            </p>
+                        </div>
+                        <div class="function-scenario">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Scenario</span>
+                            </div>
+                            <p data-testid="text-function-scenario-1">
+                                Psychiatrist guides the user through the process of recognizing patterns of negative thinking, challenges these thoughts, and helps the user replace them with more positive and realistic ones. This approach is based on cognitive-behavioral therapy principles, adapted for a conversational AI format.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card" data-testid="card-function-2" onclick="selectFunction(2)">
+                    <div class="function-header">
+                        <div class="function-icon-container">
+                            <div class="function-icon">📚</div>
+                        </div>
+                        <span class="function-badge" data-testid="badge-function-2">Education</span>
+                    </div>
+                    <h3 class="function-title" data-testid="text-function-title-2">Psychoeducational Information</h3>
+                    <p class="function-description" data-testid="text-function-description-2">
+                        Providing detailed, accessible information about mental health conditions.
+                    </p>
+                    <div class="function-details">
+                        <div class="function-example">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Example</span>
+                            </div>
+                            <p data-testid="text-function-example-2">
+                                A user curious about symptoms of bipolar disorder receives detailed, accessible information about the condition.
+                            </p>
+                        </div>
+                        <div class="function-scenario">
+                            <div class="example-header">
+                                <span class="example-icon">💬</span>
+                                <span class="example-label">Scenario</span>
+                            </div>
+                            <p data-testid="text-function-scenario-2">
+                                The user inquires about bipolar disorder, and Psychiatrist provides a detailed explanation of the symptoms, causes, and treatment options. This includes discussing mood stabilization techniques and the importance of professional healthcare guidance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-testid="text-benefits-title">Who Benefits from Psychiatrist?</h2>
+                <p class="section-subtitle" data-testid="text-benefits-subtitle">
+                    Mindful Companion AI mental health support is designed to help a diverse range of individuals on their mental wellness journey.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card" data-testid="card-benefit-0" onclick="selectBenefit(0)">
+                    <div class="benefit-icon">👤</div>
+                    <h3 class="benefit-title" data-testid="text-benefit-title-0">Individuals Exploring Mental Health</h3>
+                    <p class="benefit-description" data-testid="text-benefit-description-0">
+                        People who are beginning to explore aspects of their mental health, perhaps noticing symptoms of anxiety, depression, or other mental health conditions for the first time.
+                    </p>
+                    <div class="benefit-list">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li data-testid="list-benefit-0-0">
+                                <span class="check-icon">✅</span>
+                                Initial understanding and supportive exploration
+                            </li>
+                            <li data-testid="list-benefit-0-1">
+                                <span class="check-icon">✅</span>
+                                Low-threshold entry into mental health self-care
+                            </li>
+                            <li data-testid="list-benefit-0-2">
+                                <span class="check-icon">✅</span>
+                                Safe space to discuss emerging concerns
+                            </li>
+                            <li data-testid="list-benefit-0-3">
+                                <span class="check-icon">✅</span>
+                                Guidance on when to seek professional help
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="benefit-card" data-testid="card-benefit-1" onclick="selectBenefit(1)">
+                    <div class="benefit-icon">🎓</div>
+                    <h3 class="benefit-title" data-testid="text-benefit-title-1">Students in Psychological Studies</h3>
+                    <p class="benefit-description" data-testid="text-benefit-description-1">
+                        Psychology or counseling students can use Psychiatrist to simulate therapy sessions, practicing their response techniques.
+                    </p>
+                    <div class="benefit-list">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li data-testid="list-benefit-1-0">
+                                <span class="check-icon">✅</span>
+                                Practice therapy session simulations
+                            </li>
+                            <li data-testid="list-benefit-1-1">
+                                <span class="check-icon">✅</span>
+                                Deepen understanding of theoretical concepts
+                            </li>
+                            <li data-testid="list-benefit-1-2">
+                                <span class="check-icon">✅</span>
+                                Develop practical therapeutic skills
+                            </li>
+                            <li data-testid="list-benefit-1-3">
+                                <span class="check-icon">✅</span>
+                                Explore different therapeutic approaches
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="benefit-card" data-testid="card-benefit-2" onclick="selectBenefit(2)">
+                    <div class="benefit-icon">✅</div>
+                    <h3 class="benefit-title" data-testid="text-benefit-title-2">Individuals Seeking Anonymity and Convenience</h3>
+                    <p class="benefit-description" data-testid="text-benefit-description-2">
+                        People who prefer anonymous, easily accessible support for mental health issues can engage from the comfort of their own home.
+                    </p>
+                    <div class="benefit-list">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li data-testid="list-benefit-2-0">
+                                <span class="check-icon">✅</span>
+                                Complete anonymity and privacy
+                            </li>
+                            <li data-testid="list-benefit-2-1">
+                                <span class="check-icon">✅</span>
+                                24/7 accessibility from anywhere
+                            </li>
+                            <li data-testid="list-benefit-2-2">
+                                <span class="check-icon">✅</span>
+                                No stigma or judgment concerns
+                            </li>
+                            <li data-testid="list-benefit-2-3">
+                                <span class="check-icon">✅</span>
+                                Convenient alternative to traditional therapy
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use" class="how-to-use">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-testid="text-howto-title">How to Use Psychiatrist</h2>
+                <p class="section-subtitle" data-testid="text-howto-subtitle">
+                    Getting started with Mindful Companion is simple and straightforward. Follow these steps to begin your mental health journey.
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card" data-testid="card-step-0">
+                    <div class="step-number-container">
+                        <div class="step-icon">▶️</div>
+                        <div class="step-number">1</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title" data-testid="text-step-title-0">Step 1: Visit and Start</h3>
+                        <p class="step-description" data-testid="text-step-description-0">
+                            Visit our platform to start using Psychiatrist without needing to sign in or subscribe to any premium service.
+                        </p>
+                    </div>
+                    <div class="step-action">
+                        <button class="btn btn-outline" data-testid="button-step-action-0" onclick="stepAction(1, 'Get Started')">
+                            Get Started →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="step-card" data-testid="card-step-1">
+                    <div class="step-number-container">
+                        <div class="step-icon">🎯</div>
+                        <div class="step-number">2</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title" data-testid="text-step-title-1">Step 2: Choose Your Focus</h3>
+                        <p class="step-description" data-testid="text-step-description-1">
+                            Choose a specific mental health concern or query you need assistance with, such as anxiety, depression, or stress management.
+                        </p>
+                    </div>
+                    <div class="step-action">
+                        <button class="btn btn-outline" data-testid="button-step-action-1" onclick="stepAction(2, 'Select Topic')">
+                            Select Topic →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="step-card" data-testid="card-step-2">
+                    <div class="step-number-container">
+                        <div class="step-icon">💬</div>
+                        <div class="step-number">3</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title" data-testid="text-step-title-2">Step 3: Engage with Mindful Companion</h3>
+                        <p class="step-description" data-testid="text-step-description-2">
+                            Engage with Psychiatrist by typing your questions or describing your feelings and experiences in detail to get the most accurate and helpful responses.
+                        </p>
+                    </div>
+                    <div class="step-action">
+                        <button class="btn btn-outline" data-testid="button-step-action-2" onclick="stepAction(3, 'Start Conversation')">
+                            Start Conversation →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="step-card" data-testid="card-step-3">
+                    <div class="step-number-container">
+                        <div class="step-icon">💡</div>
+                        <div class="step-number">4</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title" data-testid="text-step-title-3">Step 4: Apply Insights</h3>
+                        <p class="step-description" data-testid="text-step-description-3">
+                            Use the provided insights and strategies to reflect on your thoughts and behaviors in a structured way, facilitating better mental health understanding.
+                        </p>
+                    </div>
+                    <div class="step-action">
+                        <button class="btn btn-outline" data-testid="button-step-action-3" onclick="stepAction(4, 'Practice Techniques')">
+                            Practice Techniques →
+                        </button>
+                    </div>
+                </div>
+
+                <div class="step-card" data-testid="card-step-4">
+                    <div class="step-number-container">
+                        <div class="step-icon">📈</div>
+                        <div class="step-number">5</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 class="step-title" data-testid="text-step-title-4">Step 5: Monitor Progress</h3>
+                        <p class="step-description" data-testid="text-step-description-4">
+                            Regularly use Psychiatrist to monitor your progress or changes in mood and mental state, using the tool as part of a comprehensive mental health strategy.
+                        </p>
+                    </div>
+                    <div class="step-action">
+                        <button class="btn btn-outline" data-testid="button-step-action-4" onclick="stepAction(5, 'Track Progress')">
+                            Track Progress →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3 class="cta-title" data-testid="text-cta-title">Ready to Begin Your Mental Health Journey?</h3>
+                <p class="cta-description">
+                    Start your conversation with Mindful Companion today and take the first step towards better mental wellness.
+                </p>
+                <button class="btn btn-primary btn-large" data-testid="button-get-started" onclick="getStarted()">
+                    Get Started Now →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                           <img src="logo.jpg" alt="Mindful Companion Logo" class="logo-image">
+                        </div>
+                        <span class="footer-logo-text">Mindful Companion</span>
+                    </div>
+                    <p class="footer-description" data-testid="text-footer-description">
+                        AI-powered mental health support providing empathetic guidance, cognitive behavioral therapy tools, 
+                        and accessible mental wellness assistance available 24/7.
+                    </p>
+                    <div class="footer-features">
+                        <div class="footer-feature" data-testid="footer-feature-0">
+                            <span class="footer-feature-icon">❤️</span>
+                            <span>Mental Wellness</span>
+                        </div>
+                        <div class="footer-feature" data-testid="footer-feature-1">
+                            <span class="footer-feature-icon">🛡️</span>
+                            <span>Privacy First</span>
+                        </div>
+                        <div class="footer-feature" data-testid="footer-feature-2">
+                            <span class="footer-feature-icon">⏰</span>
+                            <span>24/7 Available</span>
+                        </div>
+                        <div class="footer-feature" data-testid="footer-feature-3">
+                            <span class="footer-feature-icon">👥</span>
+                            <span>Professional Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h3 class="footer-links-title" data-testid="text-footer-links-title">Quick Links</h3>
+                    <div class="footer-links-list">
+                        <a href="#understanding" data-testid="link-footer-0" onclick="footerLinkClick('#understanding')">Understanding</a>
+                        <a href="#functions" data-testid="link-footer-1" onclick="footerLinkClick('#functions')">Core Functions</a>
+                        <a href="#benefits" data-testid="link-footer-2" onclick="footerLinkClick('#benefits')">Benefits</a>
+                        <a href="#how-to-use" data-testid="link-footer-3" onclick="footerLinkClick('#how-to-use')">How to Use</a>
+                    </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="footer-disclaimer">
+                    <h3 class="footer-disclaimer-title" data-testid="text-footer-disclaimer-title">Important Notice</h3>
+                    <div class="footer-disclaimer-content">
+                        <p data-testid="text-footer-disclaimer-1">
+                            Mindful Companion is an AI assistant designed to provide support and guidance, but does not replace 
+                            professional therapy or medical advice.
+                        </p>
+                        <p data-testid="text-footer-disclaimer-2">
+                            If you're experiencing a mental health crisis, please contact your local emergency services 
+                            or a qualified mental health professional immediately.
+                        </p>
+                        <p data-testid="text-footer-disclaimer-3">
+                            All conversations are confidential and designed to promote mental wellness and self-understanding.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright" data-testid="text-footer-copyright">
+                    © 2025 Mindful Companion AI Mental Health Support. Empowering mental wellness through technology.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
